@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CardioPredict | Heart Health AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">♥</div>
+            <span>Cardio<span>Predict</span></span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/" class="active">Home</a>
+
+            <a href="/predict">
+                Prediction
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </div>
+
+        <a href="/predict" class="nav-button">
+            Start Prediction →
+        </a>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                <span class="pulse-dot"></span>
+                AI-POWERED HEALTH ANALYSIS
+            </div>
+
+            <h1>
+                Understand Your
+                <span>Heart Health</span>
+            </h1>
+
+            <p>
+                An intelligent machine learning system that analyzes
+                key cardiovascular health indicators and provides
+                an estimated heart disease risk assessment.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="/predict" class="primary-button">
+                    Check Your Risk
+                    <span>→</span>
+                </a>
+
+                <a href="#about" class="secondary-button">
+                    Learn More
+                </a>
+
+            </div>
+
+            <div class="trust-row">
+
+                <div>
+                    <strong>13</strong>
+                    <small>Health Parameters</small>
+                </div>
+
+                <div class="divider"></div>
+
+                <div>
+                    <strong>AI</strong>
+                    <small>ML Prediction</small>
+                </div>
+
+                <div class="divider"></div>
+
+                <div>
+                    <strong>24/7</strong>
+                    <small>Accessible</small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HEART VISUAL -->
+
+        <div class="hero-visual">
+
+            <div class="glow"></div>
+
+            <div class="heart-card">
+
+                <div class="card-top">
+
+                    <span>HEART MONITOR</span>
+
+                    <span class="live">
+                        ● LIVE
+                    </span>
+
+                </div>
+
+                <div class="heart-symbol">
+                    ♥
+                </div>
+
+                <div class="bpm">
+
+                    <strong>72</strong>
+
+                    <span>BPM</span>
+
+                </div>
+
+                <div class="ecg">
+
+                    <svg viewBox="0 0 500 100"
+                         preserveAspectRatio="none">
+
+                        <polyline
+                            points="0,55 70,55 90,55 105,20 120,80 135,55 200,55 220,55 235,30 250,75 265,55 330,55 350,55 365,15 380,85 395,55 500,55"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <div class="monitor-status">
+
+                    <span>●</span>
+
+                    Heart rhythm visualization
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features" id="about">
+
+        <div class="section-heading">
+
+            <span>HOW IT WORKS</span>
+
+            <h2>
+                Simple. Intelligent. <span>Insightful.</span>
+            </h2>
+
+            <p>
+                Get an estimated cardiovascular risk assessment
+                in three simple steps.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    01
+                </div>
+
+                <div class="feature-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    Enter Health Data
+                </h3>
+
+                <p>
+                    Provide basic health and cardiovascular
+                    parameters through our simple form.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    02
+                </div>
+
+                <div class="feature-icon">
+                    ◉
+                </div>
+
+                <h3>
+                    AI Analysis
+                </h3>
+
+                <p>
+                    Our trained machine learning model analyzes
+                    your provided health indicators.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    03
+                </div>
+
+                <div class="feature-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Get Your Result
+                </h3>
+
+                <p>
+                    Receive an estimated risk classification
+                    with a probability score.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DISCLAIMER -->
+
+    <section class="disclaimer">
+
+        <div class="disclaimer-icon">
+            !
+        </div>
+
+        <div>
+
+            <strong>
+                Important Health Notice
+            </strong>
+
+            <p>
+                This application is designed for educational
+                and demonstration purposes. It does not provide
+                medical diagnosis or replace professional medical
+                advice.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="logo">
+            <div class="logo-icon">♥</div>
+            <span>Cardio<span>Predict</span></span>
+        </div>
+
+        <p>
+            Machine Learning Based Heart Health Prediction
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

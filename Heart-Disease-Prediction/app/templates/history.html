@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HeartCare | Prediction History</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8fb;
+            color: #172033;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            background: #0f3d56;
+            color: white;
+            padding: 30px 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 45px;
+        }
+
+        .logo span {
+            color: #2dd4bf;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #d8e7ed;
+            padding: 14px 16px;
+            border-radius: 10px;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            background: #1c5975;
+            color: white;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 35px 40px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 30px;
+        }
+
+        .header p {
+            color: #718096;
+            margin-top: 6px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button {
+            text-decoration: none;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .primary {
+            background: #0f3d56;
+            color: white;
+        }
+
+        .danger {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        /* TABLE */
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(15, 61, 86, 0.07);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th {
+            text-align: left;
+            color: #718096;
+            font-size: 13px;
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        td {
+            padding: 17px 15px;
+            border-bottom: 1px solid #eef2f5;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .risk {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .high {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .low {
+            background: #d1fae5;
+            color: #047857;
+        }
+
+        .delete {
+            color: #dc2626;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: #718096;
+        }
+
+        .empty h2 {
+            color: #0f3d56;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 10px;
+            }
+
+            .logo {
+                font-size: 0;
+            }
+
+            .logo span {
+                font-size: 20px;
+            }
+
+            .menu a {
+                font-size: 0;
+                text-align: center;
+            }
+
+            .main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+                padding: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="layout">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            Heart<span>Care</span>
+        </div>
+
+        <nav class="menu">
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/predict">
+                New Prediction
+            </a>
+
+            <a href="/history"
+               class="active">
+                Prediction History
+            </a>
+
+            <a href="#">
+                Reports
+            </a>
+
+            <a href="#">
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="header">
+
+            <div>
+
+                <h1>
+                    Prediction History
+                </h1>
+
+                <p>
+                    Review your previous heart disease predictions.
+                </p>
+
+            </div>
+
+
+            <div class="actions">
+
+                <a
+                    href="/predict"
+                    class="button primary">
+
+                    New Prediction
+
+                </a>
+
+                {% if predictions %}
+
+                <a
+                    href="/history/clear"
+                    class="button danger"
+                    onclick="return confirm('Are you sure you want to delete all prediction history?');">
+
+                    Clear History
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            {% if predictions %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            #
+                        </th>
+
+                        <th>
+                            Date & Time
+                        </th>
+
+                        <th>
+                            Age
+                        </th>
+
+                        <th>
+                            Blood Pressure
+                        </th>
+
+                        <th>
+                            Cholesterol
+                        </th>
+
+                        <th>
+                            Result
+                        </th>
+
+                        <th>
+                            Probability
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for prediction in predictions %}
+
+                    <tr>
+
+                        <td>
+                            {{ loop.index }}
+                        </td>
+
+                        <td>
+                            {{ prediction["date_time"] }}
+                        </td>
+
+                        <td>
+                            {{ prediction["age"]|int }}
+                        </td>
+
+                        <td>
+                            {{ prediction["blood_pressure"]|int }}
+                        </td>
+
+                        <td>
+                            {{ prediction["cholesterol"]|int }}
+                        </td>
+
+                        <td>
+
+                            {% if prediction["result"] == "High Risk" %}
+
+                            <span class="risk high">
+                                High Risk
+                            </span>
+
+                            {% else %}
+
+                            <span class="risk low">
+                                Low Risk
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if prediction["probability"] is not none %}
+
+                                {{ prediction["probability"] }}%
+
+                            {% else %}
+
+                                N/A
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="/history/delete/{{ prediction['id'] }}"
+                                class="delete"
+                                onclick="return confirm('Delete this prediction?');">
+
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="empty">
+
+                <h2>
+                    No Prediction History
+                </h2>
+
+                <p>
+                    Your completed predictions will appear here.
+                </p>
+
+                <br>
+
+                <a
+                    href="/predict"
+                    class="button primary">
+
+                    Make Your First Prediction
+
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>

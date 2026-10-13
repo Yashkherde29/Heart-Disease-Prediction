@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CardioPredict | Health Assessment</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">♥</div>
+
+        <span>
+            Cardio<span>Predict</span>
+        </span>
+
+    </div>
+
+    <a href="/" class="back-link">
+        ← Back to Home
+    </a>
+
+</nav>
+
+
+<section class="prediction-page">
+
+    <div class="prediction-header">
+
+        <div class="badge">
+            HEALTH ASSESSMENT
+        </div>
+
+        <h1>
+            Enter Your <span>Health Information</span>
+        </h1>
+
+        <p>
+            Provide the following cardiovascular parameters
+            for an AI-based risk assessment.
+        </p>
+
+    </div>
+
+
+    <form action="/predict"
+          method="POST"
+          class="prediction-form">
+
+
+        <!-- BASIC INFORMATION -->
+
+        <div class="form-section">
+
+            <div class="form-section-header">
+
+                <div class="section-icon">
+                    01
+                </div>
+
+                <div>
+                    <h2>Basic Information</h2>
+
+                    <p>
+                        General patient information
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+
+                    <label>
+                        Age
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="number"
+                            name="age"
+                            placeholder="e.g. 45"
+                            required
+                        >
+
+                        <span>years</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Sex
+                    </label>
+
+                    <select name="sex" required>
+
+                        <option value="">
+                            Select sex
+                        </option>
+
+                        <option value="0">
+                            Female
+                        </option>
+
+                        <option value="1">
+                            Male
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HEART PARAMETERS -->
+
+        <div class="form-section">
+
+            <div class="form-section-header">
+
+                <div class="section-icon">
+                    02
+                </div>
+
+                <div>
+
+                    <h2>
+                        Cardiovascular Parameters
+                    </h2>
+
+                    <p>
+                        Key heart and blood measurements
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="input-group">
+
+                    <label>
+                        Chest Pain Type
+                    </label>
+
+                    <select name="cp" required>
+
+                        <option value="">
+                            Select type
+                        </option>
+
+                        <option value="0">
+                            Typical Angina
+                        </option>
+
+                        <option value="1">
+                            Atypical Angina
+                        </option>
+
+                        <option value="2">
+                            Non-anginal Pain
+                        </option>
+
+                        <option value="3">
+                            Asymptomatic
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Resting Blood Pressure
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="number"
+                            name="trestbps"
+                            placeholder="e.g. 120"
+                            required
+                        >
+
+                        <span>mmHg</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Cholesterol
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="number"
+                            name="chol"
+                            placeholder="e.g. 200"
+                            required
+                        >
+
+                        <span>mg/dL</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Maximum Heart Rate
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="number"
+                            name="thalach"
+                            placeholder="e.g. 150"
+                            required
+                        >
+
+                        <span>BPM</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        ST Depression
+                    </label>
+
+                    <input
+                        type="number"
+                        step="0.1"
+                        name="oldpeak"
+                        placeholder="e.g. 1.2"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Major Vessels
+                    </label>
+
+                    <select name="ca" required>
+
+                        <option value="">
+                            Select number
+                        </option>
+
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CLINICAL INDICATORS -->
+
+        <div class="form-section">
+
+            <div class="form-section-header">
+
+                <div class="section-icon">
+                    03
+                </div>
+
+                <div>
+
+                    <h2>
+                        Clinical Indicators
+                    </h2>
+
+                    <p>
+                        Additional diagnostic parameters
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+
+                <div class="input-group">
+
+                    <label>
+                        Fasting Blood Sugar
+                    </label>
+
+                    <select name="fbs" required>
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="0">
+                            Below 120 mg/dL
+                        </option>
+
+                        <option value="1">
+                            Above 120 mg/dL
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Resting ECG
+                    </label>
+
+                    <select name="restecg" required>
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="0">
+                            Normal
+                        </option>
+
+                        <option value="1">
+                            ST-T Wave Abnormality
+                        </option>
+
+                        <option value="2">
+                            Left Ventricular Hypertrophy
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Exercise Induced Angina
+                    </label>
+
+                    <select name="exang" required>
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="0">
+                            No
+                        </option>
+
+                        <option value="1">
+                            Yes
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Slope
+                    </label>
+
+                    <select name="slope" required>
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="0">
+                            Upsloping
+                        </option>
+
+                        <option value="1">
+                            Flat
+                        </option>
+
+                        <option value="2">
+                            Downsloping
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Thalassemia
+                    </label>
+
+                    <select name="thal" required>
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option value="0">
+                            Normal
+                        </option>
+
+                        <option value="1">
+                            Fixed Defect
+                        </option>
+
+                        <option value="2">
+                            Reversible Defect
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-submit">
+
+            <div class="privacy-note">
+
+                <span>✓</span>
+
+                Your information is used only for
+                this prediction.
+
+            </div>
+
+            <button type="submit">
+
+                Analyze Heart Health
+
+                <span>→</span>
+
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+</body>
+
+</html>
